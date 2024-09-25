@@ -1,5 +1,11 @@
-import { combineReducers, legacy_createStore } from "redux";
+import { configureStore } from "@reduxjs/toolkit";
+import { api } from "./api";
+import cartSlice from "./slices/cartSlices";
 
-const reducers = combineReducers({});
-
-export const store = legacy_createStore(reducers);
+export const store = configureStore({
+  reducer: {
+    cart: cartSlice,
+    [api.reducerPath]: api.reducer,
+  },
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(api.middleware),
+});

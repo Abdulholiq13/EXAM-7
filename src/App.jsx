@@ -1,13 +1,11 @@
-import React from "react";
+import RouteController from "./routes";
 
-const App = () => {
+function App() {
   return (
-    <div>
-      <div>
-        <button>Click me</button>
-      </div>
-    </div>
+    <>
+      <RouteController />
+    </>
   );
-};
+}
 
 export default App;

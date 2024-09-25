@@ -1,0 +1,10 @@
+.ant-select-selection-item {
+  font-size: 20px !important;
+  font-weight: 700 !important;
+  color: #0ba42d;
+}
+
+.ant-select-arrow {
+  color: #0ba42d !important;
+  font-weight: 500 !important;
+}

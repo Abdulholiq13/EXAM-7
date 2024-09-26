@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 const UserOptions = () => {
   return (
     <>
-      <ul className="flex gap-10">
+      <ul className="flex gap-3">
         <li className="p-2">
           <button className="border-none">
             <RiSearchLine className="text-2xl" />

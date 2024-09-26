@@ -5,7 +5,7 @@ import CartButton from "../button/CartButton";
 const Product = ({ data }) => {
   // const dispatch = useDispatch();
   return (
-    <div className="mt-[63px]">
+    <div>
       <div className="relative p-2 bg-[#F4F4F4] h-[300px] flex items-center justify-center">
         {data?.rating_counts > 230 ? (
           <p className="uppercase absolute top-3 text-[#20CB11] left-3 text-lg font-semibold">BESTSELLER</p>

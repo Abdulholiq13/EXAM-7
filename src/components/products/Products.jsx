@@ -9,6 +9,7 @@ const ProductsComponent = () => {
   const [limit, setLimit] = useState(10);
   const [currentColor, setCurrentColor] = useState("all");
   const [selectedBrands, setSelectedBrands] = useState([]);
+  const [sortOrder, setSortOrder] = useState("all"); // Sortirni boshqarish uchun state
 
   const { data: productsData, isLoading: productsLoading } = useGetProductsQuery({
     selectedColor: currentColor === "all" ? "" : currentColor,
@@ -33,6 +34,20 @@ const ProductsComponent = () => {
 
   const handlePageChange = (current) => {
     setPageSize(current);
+  };
+
+  const handleSortChange = (e) => {
+    setSortOrder(e.target.value);
+  };
+
+  const sortProducts = (products) => {
+    const sortedProducts = [...products]; // Mahsulotlar massivining nusxasini olish
+    if (sortOrder === "cheaply") {
+      return sortedProducts.sort((a, b) => a.price - b.price); // Narx bo'yicha ortib boruvchi tartibda
+    } else if (sortOrder === "expensive") {
+      return sortedProducts.sort((a, b) => b.price - a.price); // Narx bo'yicha kamayuvchi tartibda
+    }
+    return sortedProducts; // Default holatda tartiblanmagan
   };
 
   const renderBrands = () => {
@@ -69,32 +84,48 @@ const ProductsComponent = () => {
     ));
   };
 
+  const collapseItems = [
+    {
+      key: "1",
+      label: "Brands",
+      children: renderBrands(), // Brandsni render qilish
+    },
+    {
+      key: "2",
+      label: "Colors",
+      children: renderColors(), // Colorsni render qilish
+    },
+  ];
+
   return (
-    <section>
+    <section className="py-10">
       <div className="bg-[#D5F8CF] py-7">
         <div className="container flex items-center justify-between">
           <h2 className="capitalize text-2xl font-medium text-[#0BA42D]">Filter by:</h2>
+
+          <select className="bg-transparent p-2 text-lg text-[#0BA42D]" onChange={handleSortChange}>
+            <option value="all">All</option>
+            <option className="capitalize" value="cheaply">
+              Cheaply
+            </option>
+            <option className="capitalize" value="expensive">
+              Expensive
+            </option>
+          </select>
         </div>
       </div>
 
       <div className="grid grid-cols-4 container">
-        <aside className="col-span-1 p-5">
-          <Collapse defaultActiveKey={["1", "2"]} style={{ border: "none" }}>
-            <Collapse.Panel header="Brands" key="1" style={{ border: "none", boxShadow: "none" }}>
-              {renderBrands()}
-            </Collapse.Panel>
-            <Collapse.Panel header="Colors" key="2">
-              {renderColors()}
-            </Collapse.Panel>
-          </Collapse>
+        <aside className="col-span-1 pt-10 pr-5">
+          <Collapse items={collapseItems} style={{ border: "none" }} />
         </aside>
 
         <div className="col-span-3">
-          <div className="grid grid-cols-3 gap-x-[36px] gap-y-[68px]">
+          <div className="grid grid-cols-3 gap-x-[36px] gap-y-[68px] pt-10">
             {productsLoading ? (
               <p>Loading products...</p>
             ) : productsData?.length ? (
-              productsData
+              sortProducts(productsData)
                 .slice((pageSize - 1) * limit, pageSize * limit)
                 .map((product) => <Product key={product.id} data={product} />)
             ) : (
@@ -102,6 +133,7 @@ const ProductsComponent = () => {
             )}
           </div>
           <Pagination
+            className="mt-5"
             current={pageSize}
             total={productsData?.length}
             align="center"

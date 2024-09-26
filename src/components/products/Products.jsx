@@ -98,7 +98,7 @@ const ProductsComponent = () => {
   ];
 
   return (
-    <section className="py-10">
+    <section className="pb-10">
       <div className="bg-[#D5F8CF] py-7">
         <div className="container flex items-center justify-between">
           <h2 className="capitalize text-2xl font-medium text-[#0BA42D]">Filter by:</h2>

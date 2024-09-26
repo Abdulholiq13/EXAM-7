@@ -1,5 +1,11 @@
+import Hero from "@/components/hero/Hero";
+
 const Home = () => {
-  return <div className="container mx-auto">Home</div>;
+  return (
+    <>
+      <Hero />
+    </>
+  );
 };
 
 export default Home;

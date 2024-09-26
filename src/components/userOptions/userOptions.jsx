@@ -9,7 +9,6 @@ import { useSelector } from "react-redux";
 const UserOptions = () => {
   const badge = useSelector((state) => state.cart.value);
 
-  console.log(badge?.length);
   return (
     <>
       <ul className="flex gap-3">

@@ -4,6 +4,7 @@ import Suspense from "@/utilits";
 import Header from "@/components/header/Header";
 import Footer from "@/components/footer/Footer";
 import Cart from "./cart/Cart";
+import Subheader from "@/components/subhader/Subheader";
 
 const Home = lazy(() => import("./home/Home"));
 const Notfound = lazy(() => import("./notfound/Notfound"));
@@ -15,6 +16,7 @@ const RouteController = () => {
     {
       element: (
         <Suspense>
+          <Subheader />
           <Header />
           <Outlet />
           <Footer />

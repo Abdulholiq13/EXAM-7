@@ -2,9 +2,15 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import CartButton from "../button/CartButton";
 import { Link } from "react-router-dom";
+import { addToCart } from "@/context/slices/cartSlices";
 
 const Product = ({ data }) => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
+
+  const handleAddToCart = () => {
+    dispatch(addToCart(data));
+  };
+
   return (
     <div>
       <div className="relative p-2 bg-[#FfFfFf] h-[300px] flex items-center justify-center">
@@ -39,7 +45,7 @@ const Product = ({ data }) => {
 
         <h3 className="font-semibold text-[22px] mb-[22px]">{data.price}$</h3>
 
-        <CartButton title={"Add to Cart"} />
+        <CartButton onClick={handleAddToCart} title={"Add to Cart"} />
       </div>
     </div>
   );

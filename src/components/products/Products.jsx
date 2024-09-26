@@ -9,7 +9,7 @@ const ProductsComponent = () => {
   const [limit, setLimit] = useState(10);
   const [currentColor, setCurrentColor] = useState("all");
   const [selectedBrands, setSelectedBrands] = useState([]);
-  const [sortOrder, setSortOrder] = useState("all"); // Sortirni boshqarish uchun state
+  const [sortOrder, setSortOrder] = useState("all");
 
   const { data: productsData, isLoading: productsLoading } = useGetProductsQuery({
     selectedColor: currentColor === "all" ? "" : currentColor,
@@ -41,13 +41,13 @@ const ProductsComponent = () => {
   };
 
   const sortProducts = (products) => {
-    const sortedProducts = [...products]; // Mahsulotlar massivining nusxasini olish
+    const sortedProducts = [...products];
     if (sortOrder === "cheaply") {
-      return sortedProducts.sort((a, b) => a.price - b.price); // Narx bo'yicha ortib boruvchi tartibda
+      return sortedProducts.sort((a, b) => a.price - b.price);
     } else if (sortOrder === "expensive") {
-      return sortedProducts.sort((a, b) => b.price - a.price); // Narx bo'yicha kamayuvchi tartibda
+      return sortedProducts.sort((a, b) => b.price - a.price);
     }
-    return sortedProducts; // Default holatda tartiblanmagan
+    return sortedProducts;
   };
 
   const renderBrands = () => {
@@ -68,17 +68,16 @@ const ProductsComponent = () => {
   const renderColors = () => {
     if (colorsLoading) return <p>Loading colors...</p>;
     return colorsData.map((color) => (
-      <input
-        readOnly
+      <button
         key={color}
         onClick={() => handleColorChange(color)}
-        className="w-[10px] h-[10px] outline-1 outline-green-500 shadow-md hover:cursor-pointer"
         style={{
-          margin: "5px",
-          padding: "10px",
-          border: color === "#FFFFFF" ? "2px solid #0000" : `2px solid ${color}`,
-          backgroundColor: color,
+          width: "30px",
+          height: "30px",
           borderRadius: "50%",
+          border: color === "#FFFFFF" ? "2px solid #000" : `2px solid ${color}`,
+          backgroundColor: color,
+          margin: "5px",
         }}
       />
     ));
@@ -88,12 +87,12 @@ const ProductsComponent = () => {
     {
       key: "1",
       label: "Brands",
-      children: renderBrands(), // Brandsni render qilish
+      children: renderBrands(),
     },
     {
       key: "2",
       label: "Colors",
-      children: renderColors(), // Colorsni render qilish
+      children: renderColors(),
     },
   ];
 

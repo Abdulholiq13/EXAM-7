@@ -19,7 +19,7 @@ const UserOptions = () => {
           </Link>
         </li>
         <li className="p-2">
-          <Link to={"/account"}>
+          <Link to={"/cart"}>
             <RiShoppingCartLine className="text-2xl" />
           </Link>
         </li>

@@ -1,0 +1,8 @@
+.ant-carousel .slick-arrow::after {
+  display: none; /* Standart belgilarning ko'rinishini o'chirib qo'yamiz */
+}
+
+.custom-next-arrow,
+.custom-prev-arrow {
+  display: block; /* Faqat maxsus belgilarning ko'rinishini ta'minlaymiz */
+}

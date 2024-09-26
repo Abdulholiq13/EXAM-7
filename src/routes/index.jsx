@@ -3,11 +3,12 @@ import { Outlet, useRoutes } from "react-router-dom";
 import Suspense from "@/utilits";
 import Header from "@/components/header/Header";
 import Footer from "@/components/footer/Footer";
+import Cart from "./cart/Cart";
 
 const Home = lazy(() => import("./home/Home"));
 const Notfound = lazy(() => import("./notfound/Notfound"));
 const Products = lazy(() => import("./products/Products"));
-const SinglineProduct = lazy(() => import("./singleProduct/SinglineProduct"));
+const SingleProduct = lazy(() => import("./singleProduct/SingleProduct"));
 
 const RouteController = () => {
   return useRoutes([
@@ -38,10 +39,18 @@ const RouteController = () => {
           ),
         },
         {
-          path: "/porducts/:id",
+          path: "/products/:id",
           element: (
             <Suspense>
-              <SinglineProduct />
+              <SingleProduct />
+            </Suspense>
+          ),
+        },
+        {
+          path: "/cart",
+          element: (
+            <Suspense>
+              <Cart />
             </Suspense>
           ),
         },

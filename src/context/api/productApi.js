@@ -18,6 +18,13 @@ export const productApi = api.injectEndpoints({
       },
       providesTags: ["Products"],
     }),
+    getSingleProduct: build.query({
+      query: (id) => ({
+        url: `/products/${id}`,
+      }),
+      providesTags: ["Products"],
+    }),
+
     getBrands: build.query({
       query: () => "/brands",
     }),
@@ -27,4 +34,4 @@ export const productApi = api.injectEndpoints({
   }),
 });
 
-export const { useGetProductsQuery, useGetBrandsQuery, useGetColorsQuery } = productApi;
+export const { useGetProductsQuery, useGetBrandsQuery, useGetColorsQuery, useGetSingleProductQuery } = productApi;

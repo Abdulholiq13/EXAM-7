@@ -22,17 +22,9 @@ const SingleProduct = () => {
     }
   }, [isAdded, messageApi]);
 
-  const handleIncrement = () => {
-    setQuantity(quantity + 1);
-  };
-
-  const handleDecrement = () => {
-    if (quantity > 1) setQuantity(quantity - 1);
-  };
-
   const handleAddToCart = () => {
     dispatch(addToCart({ cart: { ...product, quantity } }));
-    setIsAdded(true); // Xabar trigger qilish uchun isAdded qiymatini true qilamiz
+    setIsAdded(true);
   };
 
   const contentStyle = {

@@ -3,8 +3,13 @@ import { RiSearchLine } from "react-icons/ri";
 import { RiUser3Line } from "react-icons/ri";
 import { RiShoppingCartLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
+import { Badge } from "antd";
+import { useSelector } from "react-redux";
 
 const UserOptions = () => {
+  const badge = useSelector((state) => state.cart.value);
+
+  console.log(badge?.length);
   return (
     <>
       <ul className="flex gap-3">
@@ -20,7 +25,9 @@ const UserOptions = () => {
         </li>
         <li className="p-2">
           <Link to={"/cart"}>
-            <RiShoppingCartLine className="text-2xl" />
+            <Badge count={badge.length}>
+              <RiShoppingCartLine className="text-2xl" />
+            </Badge>
           </Link>
         </li>
       </ul>

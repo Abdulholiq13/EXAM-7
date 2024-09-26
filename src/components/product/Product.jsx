@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import CartButton from "../button/CartButton";
 import { Link } from "react-router-dom";
@@ -6,9 +6,11 @@ import { addToCart } from "@/context/slices/cartSlices";
 
 const Product = ({ data }) => {
   const dispatch = useDispatch();
+  const [isAdded, setIsAdded] = useState(false);
 
   const handleAddToCart = () => {
     dispatch(addToCart(data));
+    setIsAdded(true);
   };
 
   return (
@@ -45,7 +47,7 @@ const Product = ({ data }) => {
 
         <h3 className="font-semibold text-[22px] mb-[22px]">{data.price}$</h3>
 
-        <CartButton onClick={handleAddToCart} title={"Add to Cart"} />
+        <CartButton onClick={handleAddToCart} title={"Add to Cart"} disabled={isAdded} />
       </div>
     </div>
   );
